@@ -1,0 +1,7 @@
+tar file generated from AD git repo with the following incantation
+which strips out unused IDL with .dll, JCA and CAJ jars, and bundled source
+for jpeg, tiff, tinyxml, nexus, and netcdf.
+
+(git ls-files|egrep -v 'gitignore|tinyxml|netCDFSrc/|nexusSrc/|tiffSupport/|IDL/|jar' \
+ | xargs git archive --prefix=epics-adcore-2.4+dfsg.20151122/ 54569acaf042ba33476eb6de64fe203d4bf4e0d6 \
+)|gzip -9 > ~/dpack/adcore/epics-adcore_2.4+dfsg.20151122.orig.tar.gz
