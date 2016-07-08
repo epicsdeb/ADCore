@@ -1,0 +1,5 @@
+0001-specialize-RELEASE-and-CONFIG_SITE.patch
+0002-hdf5-library-name.patch
+0003-use-system-libs.patch
+0004-quiet-Werror-format-security.patch
+0005-don-t-install-plugin-test.patch

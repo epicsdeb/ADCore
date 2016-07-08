@@ -1,0 +1,21 @@
+From: Michael Davidsaver <mdavidsaver@gmail.com>
+Date: Fri, 8 Jul 2016 16:37:17 -0400
+Subject: quiet -Werror=format-security
+
+---
+ ADApp/pluginSrc/NDPluginROIStat.cpp | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/ADApp/pluginSrc/NDPluginROIStat.cpp b/ADApp/pluginSrc/NDPluginROIStat.cpp
+index 35073fe..2d301a7 100644
+--- a/ADApp/pluginSrc/NDPluginROIStat.cpp
++++ b/ADApp/pluginSrc/NDPluginROIStat.cpp
+@@ -491,7 +491,7 @@ NDPluginROIStat::NDPluginROIStat(const char *portName, int queueSize, int blocki
+   }
+   maxROIs_ = maxROIs;
+   pROIs_ = new NDROI[maxROIs];
+-  if(!pROIs_) {cantProceed(functionName);}
++  if(!pROIs_) {cantProceed("%s",functionName);}
+   
+   /* ROI general parameters */
+   createParam(NDPluginROIStatFirstString,             asynParamInt32, &NDPluginROIStatFirst);

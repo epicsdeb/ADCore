@@ -1,0 +1,104 @@
+From: Michael Davidsaver <mdavidsaver@gmail.com>
+Date: Fri, 8 Jul 2016 15:24:59 -0400
+Subject: hdf5 library name
+
+On debian 8 this is not plain 'hdf5' but rather 'hdf5_serial'.
+---
+ ADApp/commonDriverMakefile  | 12 ++++++------
+ ADApp/commonLibraryMakefile | 12 ++++++------
+ ADApp/pluginTests/Makefile  |  6 +++---
+ 3 files changed, 15 insertions(+), 15 deletions(-)
+
+diff --git a/ADApp/commonDriverMakefile b/ADApp/commonDriverMakefile
+index dcac871..d74c881 100644
+--- a/ADApp/commonDriverMakefile
++++ b/ADApp/commonDriverMakefile
+@@ -75,27 +75,27 @@ endif
+ ifeq ($(HDF5_STATIC_BUILD), NO)
+   USR_CXXFLAGS_WIN32    += -DH5_BUILT_AS_DYNAMIC_LIB
+   USR_CFLAGS_WIN32      += -DH5_BUILT_AS_DYNAMIC_LIB
+-  PROD_LIBS_WIN32       += hdf5 szip zlib
++  PROD_LIBS_WIN32       += $(HDF5_NAME) szip zlib
+ else
+   USR_CXXFLAGS_WIN32    += -DH5_BUILT_AS_STATIC_LIB
+   USR_CFLAGS_WIN32      += -DH5_BUILT_AS_STATIC_LIB
+-  PROD_LIBS_WIN32       += libhdf5 libszip libzlib
++  PROD_LIBS_WIN32       += lib$(HDF5_NAME) libszip libzlib
+ endif
+ PROD_LIBS_WIN32         += libxml2
+ 
+ PROD_SYS_LIBS_WIN32     += Gdi32 Oleaut32
+ 
+-PROD_SYS_LIBS_cygwin32  += libhdf5
++PROD_SYS_LIBS_cygwin32  += lib$(HDF5_NAME)
+ PROD_SYS_LIBS_cygwin32  += libtiff libjpeg libjbig libz libxml2
+ PROD_SYS_LIBS_cygwin32  += $(CYGWIN_RPC_LIB)
+ PROD_SYS_LIBS_cygwin32  += Gdi32
+ 
+ ifeq ($(OS_CLASS), $(filter $(OS_CLASS), Linux Darwin solaris))
+   ifdef HDF5_LIB
+-    hdf5_DIR             = $(HDF5_LIB)
+-    PROD_LIBS           += hdf5
++    $(HDF5_NAME)_DIR             = $(HDF5_LIB)
++    PROD_LIBS           += $(HDF5_NAME)
+   else
+-    PROD_SYS_LIBS       += hdf5
++    PROD_SYS_LIBS       += $(HDF5_NAME)
+   endif
+   ifdef SZIP
+     ifdef SZIP_LIB
+diff --git a/ADApp/commonLibraryMakefile b/ADApp/commonLibraryMakefile
+index d068a9b..adb6952 100644
+--- a/ADApp/commonLibraryMakefile
++++ b/ADApp/commonLibraryMakefile
+@@ -48,26 +48,26 @@ endif
+ ifeq ($(HDF5_STATIC_BUILD), NO)
+   USR_CXXFLAGS_WIN32    += -DH5_BUILT_AS_DYNAMIC_LIB
+   USR_CFLAGS_WIN32      += -DH5_BUILT_AS_DYNAMIC_LIB
+-  LIB_LIBS_WIN32        += hdf5 szip zlib
++  LIB_LIBS_WIN32        += $(HDF5_NAME) szip zlib
+ else
+   USR_CXXFLAGS_WIN32    += -DH5_BUILT_AS_STATIC_LIB
+   USR_CFLAGS_WIN32      += -DH5_BUILT_AS_STATIC_LIB
+-  LIB_LIBS_WIN32        += libhdf5 libszip libzlib
++  LIB_LIBS_WIN32        += lib$(HDF5_NAME) libszip libzlib
+ endif
+ LIB_LIBS_WIN32          += libxml2
+ LIB_SYS_LIBS_WIN32      += Gdi32 Oleaut32 
+ 
+-LIB_SYS_LIBS_cygwin32   += libhdf5
++LIB_SYS_LIBS_cygwin32   += lib$(HDF5_NAME)
+ LIB_SYS_LIBS_cygwin32   += libtiff libjpeg libjbig libz libxml2
+ LIB_SYS_LIBS_cygwin32   += $(CYGWIN_RPC_LIB)
+ LIB_SYS_LIBS_cygwin32   += Gdi32
+ 
+ ifeq ($(OS_CLASS), $(filter $(OS_CLASS), Linux Darwin solaris))
+   ifdef HDF5_LIB
+-    hdf5_DIR            = $(HDF5_LIB)
+-    LIB_LIBS            += hdf5
++    $(HDF5_NAME)_DIR            = $(HDF5_LIB)
++    LIB_LIBS            += $(HDF5_NAME)
+   else
+-    LIB_SYS_LIBS        += hdf5
++    LIB_SYS_LIBS        += $(HDF5_NAME)
+   endif
+   ifdef SZIP
+     ifdef SZIP_LIB
+diff --git a/ADApp/pluginTests/Makefile b/ADApp/pluginTests/Makefile
+index 80cfd2a..53f9cd5 100644
+--- a/ADApp/pluginTests/Makefile
++++ b/ADApp/pluginTests/Makefile
+@@ -44,10 +44,10 @@ USR_INCLUDES += $(BOOST_INCLUDE)
+ PROD_LIBS += NDPlugin ADBase asyn
+ 
+ ifdef HDF5_LIB
+-  hdf5_DIR = $(HDF5_LIB)
+-  PROD_LIBS += hdf5
++  $(HDF5_NAME)_DIR = $(HDF5_LIB)
++  PROD_LIBS += $(HDF5_NAME)
+ else
+-  PROD_SYS_LIBS += hdf5
++  PROD_SYS_LIBS += $(HDF5_NAME)
+ endif
+ 
+ ifdef SZIP

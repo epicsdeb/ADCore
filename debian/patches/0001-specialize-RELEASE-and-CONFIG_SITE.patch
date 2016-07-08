@@ -1,0 +1,54 @@
+From: Michael Davidsaver <mdavidsaver@gmail.com>
+Date: Fri, 8 Jul 2016 15:20:37 -0400
+Subject: specialize RELEASE and CONFIG_SITE
+
+---
+ configure/CONFIG_SITE | 18 ++++++++++--------
+ configure/RELEASE     | 10 +++++-----
+ 2 files changed, 15 insertions(+), 13 deletions(-)
+
+diff --git a/configure/CONFIG_SITE b/configure/CONFIG_SITE
+index 4df968f..412ee9b 100644
+--- a/configure/CONFIG_SITE
++++ b/configure/CONFIG_SITE
+@@ -32,11 +32,13 @@ CHECK_RELEASE = YES
+ #   take effect.
+ #IOCS_APPL_TOP = </IOC/path/to/application/top>
+ 
+-# Get settings from AREA_DETECTOR, so we only have to configure once for all detectors if we want to
+--include $(AREA_DETECTOR)/configure/CONFIG_SITE
+--include $(AREA_DETECTOR)/configure/CONFIG_SITE.$(EPICS_HOST_ARCH)
+--include $(AREA_DETECTOR)/configure/CONFIG_SITE.$(EPICS_HOST_ARCH).Common
+-ifdef T_A
+-  -include $(AREA_DETECTOR)/configure/CONFIG_SITE.Common.$(T_A)
+-  -include $(AREA_DETECTOR)/configure/CONFIG_SITE.$(EPICS_HOST_ARCH).$(T_A)
+-endif
++BUILD_IOCS=YES
++USE_GRAPHICSMAGICK=NO
++HDF5_NAME    = hdf5_serial
++HDF5_LIB     = /usr/lib/x86_64-linux-gnu
++HDF5_INCLUDE = -I/usr/include/hdf5/serial
++USR_CFLAGS_Linux   += -D_FILE_OFFSET_BITS=64
++USR_CXXFLAGS_Linux += -D_FILE_OFFSET_BITS=64
++XML2_INCLUDE = -I/usr/include/libxml2
++
++BOOST=/usr
+diff --git a/configure/RELEASE b/configure/RELEASE
+index 04a9e55..ccd6cb4 100644
+--- a/configure/RELEASE
++++ b/configure/RELEASE
+@@ -2,9 +2,9 @@
+ # Run "gnumake clean uninstall install" in the application
+ # top directory each time this file is changed.
+ 
+--include $(TOP)/../configure/RELEASE_PATHS.local
+--include $(TOP)/../configure/RELEASE_PATHS.local.$(EPICS_HOST_ARCH)
+--include $(TOP)/../configure/RELEASE_LIBS.local
+--include $(TOP)/RELEASE.local
+--include $(TOP)/configure/RELEASE.local
++AUTOSAVE=$(EPICS_BASE)
++ASYN=$(EPICS_BASE)
++BUSY=$(EPICS_BASE)
++CALC=$(EPICS_BASE)
+ 
++EPICS_BASE=/usr/lib/epics
