@@ -1,0 +1,5 @@
+ADApp/commonDriverMakefile etc/epics/configure/
+ADApp/commonLibraryMakefile etc/epics/configure/
+iocBoot/pos_plugin_* usr/share/doc/epics-adcore-common/
+iocBoot/EXAMPLE_* usr/share/doc/epics-adcore-common/
+debian/commonPlugins.cmd usr/lib/epics/iocBoot/

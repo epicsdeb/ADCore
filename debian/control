@@ -19,21 +19,31 @@ Vcs-Browser: https://github.com/epicsdeb/adcore
 Package: epics-adcore-dev
 Architecture: any
 Depends: libadcore2.5 (= ${binary:Version}),
+         epics-adcore-common (>= ${source:Version}),
+         epics-adcore-common (<< ${source:Version}.1~),
          ${shlibs:Depends}, ${misc:Depends},
          ${epics:Depends},
 Conflicts: epics-synapps,
-Description: Short description
- Long description
- with lines indented
+Description: areaDetector core
+ areaDetector camera acquisition framework
  .
  This package contains headers and libraries needed at build time.
+
+Package: epics-adcore-common
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends},
+         ${epics:Depends},
+Description: areaDetector core
+ areaDetector camera acquisition framework
+ .
+ This package contains some support files useful when
+ building/running IOCs using areaDetector
 
 Package: libadcore2.5
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends},
 Conflicts: epics-synapps,
-Description: Short description
- Long description
- with lines indented
+Description: areaDetector core
+ areaDetector camera acquisition framework
  .
  This package contains runtime libraries

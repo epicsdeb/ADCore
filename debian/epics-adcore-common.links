@@ -1,0 +1,2 @@
+etc/epics/configure/commonDriverMakefile usr/lib/epics/configure/commonDriverMakefile
+etc/epics/configure/commonLibraryMakefile usr/lib/epics/configure/commonLibraryMakefile
