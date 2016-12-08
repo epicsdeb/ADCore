@@ -18,7 +18,7 @@ Vcs-Browser: https://github.com/epicsdeb/adcore
 
 Package: epics-adcore-dev
 Architecture: any
-Depends: libadcore2.4+dfsg.20151122 (= ${binary:Version}),
+Depends: libadcore2.5 (= ${binary:Version}),
          ${shlibs:Depends}, ${misc:Depends},
          ${epics:Depends},
 Conflicts: epics-synapps,
@@ -28,7 +28,7 @@ Description: Short description
  .
  This package contains headers and libraries needed at build time.
 
-Package: libadcore2.4+dfsg.20151122
+Package: libadcore2.5
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends},
 Conflicts: epics-synapps,
