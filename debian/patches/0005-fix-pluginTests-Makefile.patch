@@ -1,0 +1,29 @@
+From: Michael Davidsaver <mdavidsaver@gmail.com>
+Date: Thu, 8 Dec 2016 14:09:34 -0500
+Subject: fix pluginTests Makefile
+
+---
+ ADApp/pluginTests/Makefile | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/ADApp/pluginTests/Makefile b/ADApp/pluginTests/Makefile
+index 4677a09..77ec64e 100644
+--- a/ADApp/pluginTests/Makefile
++++ b/ADApp/pluginTests/Makefile
+@@ -27,7 +27,7 @@ ifeq ($(WITH_BOOST),YES)
+   ADTestUtility_SRCS += TimeSeriesPluginWrapper.cpp
+   ADTestUtility_SRCS += FFTPluginWrapper.cpp
+ 
+-  PROD_IOC_Linux += plugin-test
++  TESTPROD_IOC_Linux += plugin-test
+   PROD_IOC_Darwin += plugin-test
+   plugin-test_SRCS += plugin-test.cpp
+   plugin-test_SRCS += test_NDPluginCircularBuff.cpp
+@@ -67,6 +67,6 @@ ifeq ($(WITH_HDF5),YES)
+   test_SWMR_fail_min_SRCS  += test_SWMR_fail_min.c
+ endif
+ 
+-include $(ADCORE)/ADApp/commonDriverMakefile
++include $(TOP)/ADApp/commonDriverMakefile
+ 
+ include $(TOP)/configure/RULES

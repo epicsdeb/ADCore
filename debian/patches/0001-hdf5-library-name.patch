@@ -1,0 +1,46 @@
+From: Michael Davidsaver <mdavidsaver@gmail.com>
+Date: Fri, 8 Jul 2016 15:24:59 -0400
+Subject: hdf5 library name
+
+On debian 8 this is not plain 'hdf5' but rather 'hdf5_serial'.
+---
+ ADApp/commonDriverMakefile  | 6 +++---
+ ADApp/commonLibraryMakefile | 6 +++---
+ 2 files changed, 6 insertions(+), 6 deletions(-)
+
+diff --git a/ADApp/commonDriverMakefile b/ADApp/commonDriverMakefile
+index 067743a..a35167b 100644
+--- a/ADApp/commonDriverMakefile
++++ b/ADApp/commonDriverMakefile
+@@ -96,10 +96,10 @@ ifeq ($(WITH_HDF5),YES)
+     PROD_LIBS += hdf5
+   else
+     ifdef HDF5_LIB
+-      hdf5_DIR     = $(HDF5_LIB)
+-      PROD_LIBS     += hdf5
++      $(HDF5_NAME)_DIR     = $(HDF5_LIB)
++      PROD_LIBS     += $(HDF5_NAME)
+     else
+-      PROD_SYS_LIBS += hdf5
++      PROD_SYS_LIBS += $(HDF5_NAME)
+     endif
+   endif
+   ifeq ($(HDF5_STATIC_BUILD), NO)
+diff --git a/ADApp/commonLibraryMakefile b/ADApp/commonLibraryMakefile
+index 803b6b7..9f94cf1 100644
+--- a/ADApp/commonLibraryMakefile
++++ b/ADApp/commonLibraryMakefile
+@@ -81,10 +81,10 @@ ifeq ($(WITH_HDF5),YES)
+     LIB_LIBS += hdf5
+   else
+     ifdef HDF5_LIB
+-      hdf5_DIR     = $(HDF5_LIB)
+-      LIB_LIBS     += hdf5
++      $(HDF5_NAME)_DIR     = $(HDF5_LIB)
++      LIB_LIBS     += $(HDF5_NAME)
+     else
+-      LIB_SYS_LIBS += hdf5
++      LIB_SYS_LIBS += $(HDF5_NAME)
+     endif
+   endif
+   ifeq ($(HDF5_STATIC_BUILD), NO)

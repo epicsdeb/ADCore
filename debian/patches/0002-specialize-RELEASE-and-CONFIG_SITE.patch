@@ -3,15 +3,15 @@ Date: Fri, 8 Jul 2016 15:20:37 -0400
 Subject: specialize RELEASE and CONFIG_SITE
 
 ---
- configure/CONFIG_SITE | 18 ++++++++++--------
- configure/RELEASE     | 10 +++++-----
- 2 files changed, 15 insertions(+), 13 deletions(-)
+ configure/CONFIG_SITE | 33 +++++++++++++++++++++++++--------
+ configure/RELEASE     |  9 ++++++---
+ 2 files changed, 31 insertions(+), 11 deletions(-)
 
 diff --git a/configure/CONFIG_SITE b/configure/CONFIG_SITE
-index 4df968f..412ee9b 100644
+index 4df968f..1430e73 100644
 --- a/configure/CONFIG_SITE
 +++ b/configure/CONFIG_SITE
-@@ -32,11 +32,13 @@ CHECK_RELEASE = YES
+@@ -32,11 +32,28 @@ CHECK_RELEASE = YES
  #   take effect.
  #IOCS_APPL_TOP = </IOC/path/to/application/top>
  
@@ -24,31 +24,45 @@ index 4df968f..412ee9b 100644
 -  -include $(AREA_DETECTOR)/configure/CONFIG_SITE.$(EPICS_HOST_ARCH).$(T_A)
 -endif
 +BUILD_IOCS=YES
-+USE_GRAPHICSMAGICK=NO
++
++WITH_NETCDF=YES
++WITH_TIFF=YES
++WITH_JPEG=YES
++WITH_XML2=YES
++WITH_NEXUS=YES
++WITH_HDF5=YES
++# libsz not packaged
++WITH_SZIP=NO
++WITH_ZLIB=YES
++WITH_GRAPHICSMAGICK=YES
++# pvDatabaseCPP not packaged
++WITH_EPICS_V4=NO
++
 +HDF5_NAME    = hdf5_serial
-+HDF5_LIB     = /usr/lib/x86_64-linux-gnu
-+HDF5_INCLUDE = -I/usr/include/hdf5/serial
++
 +USR_CFLAGS_Linux   += -D_FILE_OFFSET_BITS=64
 +USR_CXXFLAGS_Linux += -D_FILE_OFFSET_BITS=64
-+XML2_INCLUDE = -I/usr/include/libxml2
 +
-+BOOST=/usr
++XML2_INCLUDE = -I/usr/include/libxml2
++HDF5_INCLUDE = -I/usr/include/hdf5/serial
++GRAPHICS_MAGICK_INCLUDE = -I/usr/include/GraphicsMagick
++
++WITH_BOOST=YES
 diff --git a/configure/RELEASE b/configure/RELEASE
-index 04a9e55..ccd6cb4 100644
+index e835000..73f1ff3 100644
 --- a/configure/RELEASE
 +++ b/configure/RELEASE
-@@ -2,9 +2,9 @@
+@@ -2,6 +2,9 @@
  # Run "gnumake clean uninstall install" in the application
  # top directory each time this file is changed.
  
---include $(TOP)/../configure/RELEASE_PATHS.local
---include $(TOP)/../configure/RELEASE_PATHS.local.$(EPICS_HOST_ARCH)
---include $(TOP)/../configure/RELEASE_LIBS.local
+--include $(TOP)/../configure/RELEASE_LIBS_INCLUDE
 --include $(TOP)/RELEASE.local
 --include $(TOP)/configure/RELEASE.local
 +AUTOSAVE=$(EPICS_BASE)
 +ASYN=$(EPICS_BASE)
 +BUSY=$(EPICS_BASE)
 +CALC=$(EPICS_BASE)
- 
++
 +EPICS_BASE=/usr/lib/epics
+\ No newline at end of file

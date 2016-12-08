@@ -7,10 +7,10 @@ Subject: quiet -Werror=format-security
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/ADApp/pluginSrc/NDPluginROIStat.cpp b/ADApp/pluginSrc/NDPluginROIStat.cpp
-index 35073fe..2d301a7 100644
+index 560f121..a0b4ebe 100644
 --- a/ADApp/pluginSrc/NDPluginROIStat.cpp
 +++ b/ADApp/pluginSrc/NDPluginROIStat.cpp
-@@ -491,7 +491,7 @@ NDPluginROIStat::NDPluginROIStat(const char *portName, int queueSize, int blocki
+@@ -495,7 +495,7 @@ NDPluginROIStat::NDPluginROIStat(const char *portName, int queueSize, int blocki
    }
    maxROIs_ = maxROIs;
    pROIs_ = new NDROI[maxROIs];

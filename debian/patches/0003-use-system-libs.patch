@@ -7,17 +7,14 @@ netcdf
 nexus
 tiff/jpeg
 ---
- ADApp/ADSrc/Makefile        | 4 +---
- ADApp/Makefile              | 8 +-------
- ADApp/commonDriverMakefile  | 5 +++--
- ADApp/commonLibraryMakefile | 5 +++--
- 4 files changed, 8 insertions(+), 14 deletions(-)
+ ADApp/ADSrc/Makefile | 4 +---
+ 1 file changed, 1 insertion(+), 3 deletions(-)
 
 diff --git a/ADApp/ADSrc/Makefile b/ADApp/ADSrc/Makefile
-index 3682184..487b5d1 100644
+index 0d50f03..8fd1146 100644
 --- a/ADApp/ADSrc/Makefile
 +++ b/ADApp/ADSrc/Makefile
-@@ -28,8 +28,6 @@ INC += paramAttribute.h
+@@ -27,8 +27,6 @@ INC += paramAttribute.h
  INC += functAttribute.h
  INC += asynNDArrayDriver.h
  INC += ADDriver.h
@@ -26,7 +23,7 @@ index 3682184..487b5d1 100644
  
  LIBRARY_IOC = ADBase
  LIB_SRCS += NDAttribute.cpp
-@@ -48,7 +46,6 @@ else
+@@ -47,7 +45,6 @@ else
    LIB_SRCS += myTimeStampSource.cpp
    LIB_SRCS += myAttributeFunctions.cpp
  endif
@@ -34,7 +31,7 @@ index 3682184..487b5d1 100644
  
  LIB_LIBS += asyn
  ifeq ($(EPICS_LIBCOM_ONLY),YES)
-@@ -56,6 +53,7 @@ ifeq ($(EPICS_LIBCOM_ONLY),YES)
+@@ -55,6 +52,7 @@ ifeq ($(EPICS_LIBCOM_ONLY),YES)
  else
    LIB_LIBS += $(EPICS_BASE_IOC_LIBS)
  endif
@@ -42,61 +39,3 @@ index 3682184..487b5d1 100644
  
  include $(TOP)/configure/RULES
  #----------------------------------------
-diff --git a/ADApp/Makefile b/ADApp/Makefile
-index b5e6c59..c9317e5 100644
---- a/ADApp/Makefile
-+++ b/ADApp/Makefile
-@@ -6,14 +6,8 @@ DIRS := $(DIRS) $(filter-out $(DIRS), $(wildcard *Db*))
- 
- DIRS += ADSrc
- 
--DIRS += netCDFSrc
--
--DIRS += nexusSrc
--
--DIRS += tiffSupport
--
- DIRS += pluginSrc
--pluginSrc_DEPEND_DIRS += ADSrc netCDFSrc nexusSrc tiffSupport
-+pluginSrc_DEPEND_DIRS += ADSrc
- 
- DIRS += pluginTests
- pluginTests_DEPEND_DIRS += ADSrc pluginSrc
-diff --git a/ADApp/commonDriverMakefile b/ADApp/commonDriverMakefile
-index d74c881..4c4195f 100644
---- a/ADApp/commonDriverMakefile
-+++ b/ADApp/commonDriverMakefile
-@@ -3,7 +3,8 @@
- 
- $(PROD_NAME)_DBD += commonDriverSupport.dbd
- 
--PROD_LIBS               += NDPlugin ADBase netCDF
-+PROD_LIBS               += NDPlugin ADBase
-+PROD_SYS_LIBS           += netcdf
- 
- ifdef ADPLUGINEDGE
-   PROD_LIBS             += NDPluginEdge
-@@ -17,7 +18,7 @@ ifdef ADPLUGINEDGE
- endif
- 
- ifneq (vxWorks, $(findstring vxWorks, $(T_A)))
--  PROD_LIBS             += NeXus
-+  PROD_SYS_LIBS             += NeXus
- endif
- PROD_LIBS               += calc busy sscan autosave
- 
-diff --git a/ADApp/commonLibraryMakefile b/ADApp/commonLibraryMakefile
-index adb6952..2bd1c01 100644
---- a/ADApp/commonLibraryMakefile
-+++ b/ADApp/commonLibraryMakefile
-@@ -1,7 +1,8 @@
- # This file contains the commands to build libraries using the common set of plugins
--LIB_LIBS                += ADBase netCDF
-+LIB_LIBS                += ADBase
-+LIB_SYS_LIBS           += netcdf
- ifneq (vxWorks, $(findstring vxWorks, $(T_A)))
--  LIB_LIBS              += NeXus
-+  LIB_SYS_LIBS              += NeXus
- endif
- LIB_LIBS                += asyn
- ifeq ($(EPICS_LIBCOM_ONLY),YES)
