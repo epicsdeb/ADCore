@@ -5,9 +5,11 @@ Maintainer: Michael Davidsaver <mdavidsaver@gmail.com>
 Build-Depends: debhelper (>= 9), epics-debhelper (>= 8.14~),
                epics-dev,
                epics-asyn-dev, epics-busy-dev, epics-calc-dev,
+               zlib1g-dev,
                libtinyxml-dev, libnexus0-dev, libnetcdf-dev,
                libhdf5-serial-dev | libhdf5-dev,
-               libtiff5-dev,
+               libgraphicsmagick1-dev, libgraphicsmagick++1-dev,
+               libtiff5-dev, libjpeg-dev,
                libboost-dev, libboost-test-dev,
 Standards-Version: 3.9.6
 Homepage: http://cars.uchicago.edu/software/epics/areaDetector.html
