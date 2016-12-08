@@ -21,6 +21,8 @@ Architecture: any
 Depends: libadcore2.5 (= ${binary:Version}),
          epics-adcore-common (>= ${source:Version}),
          epics-adcore-common (<< ${source:Version}.1~),
+         epics-dev,
+         epics-asyn-dev, epics-busy-dev, epics-calc-dev,
          ${shlibs:Depends}, ${misc:Depends},
          ${epics:Depends},
 Conflicts: epics-synapps,
