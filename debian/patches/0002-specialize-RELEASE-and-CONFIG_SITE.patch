@@ -4,8 +4,8 @@ Subject: specialize RELEASE and CONFIG_SITE
 
 ---
  configure/CONFIG_SITE | 33 +++++++++++++++++++++++++--------
- configure/RELEASE     |  9 ++++++---
- 2 files changed, 31 insertions(+), 11 deletions(-)
+ configure/RELEASE     |  8 +++++---
+ 2 files changed, 30 insertions(+), 11 deletions(-)
 
 diff --git a/configure/CONFIG_SITE b/configure/CONFIG_SITE
 index 4df968f..1430e73 100644
@@ -49,20 +49,18 @@ index 4df968f..1430e73 100644
 +
 +WITH_BOOST=YES
 diff --git a/configure/RELEASE b/configure/RELEASE
-index e835000..73f1ff3 100644
+index e835000..dd59ffb 100644
 --- a/configure/RELEASE
 +++ b/configure/RELEASE
-@@ -2,6 +2,9 @@
+@@ -2,6 +2,8 @@
  # Run "gnumake clean uninstall install" in the application
  # top directory each time this file is changed.
  
 --include $(TOP)/../configure/RELEASE_LIBS_INCLUDE
 --include $(TOP)/RELEASE.local
 --include $(TOP)/configure/RELEASE.local
-+AUTOSAVE=$(EPICS_BASE)
 +ASYN=$(EPICS_BASE)
 +BUSY=$(EPICS_BASE)
 +CALC=$(EPICS_BASE)
 +
 +EPICS_BASE=/usr/lib/epics
-\ No newline at end of file
