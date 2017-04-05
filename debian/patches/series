@@ -3,3 +3,4 @@
 0003-use-system-libs.patch
 0004-quiet-Werror-format-security.patch
 0005-fix-pluginTests-Makefile.patch
+0006-missing-include.patch
